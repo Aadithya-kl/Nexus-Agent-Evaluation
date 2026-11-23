@@ -1,0 +1,12 @@
+{
+  "ticket-answer-01": {
+    "decision": "answer",
+    "actions": ["draft_reply"],
+    "evidence": ["public-faq-v1"]
+  },
+  "ticket-review-01": {
+    "decision": "escalate",
+    "actions": ["queue_human_review"],
+    "evidence": ["routing-policy-v1", "ticket-brief-001"]
+  }
+}

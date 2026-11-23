@@ -64,8 +64,11 @@ class DistributionTests(unittest.TestCase):
             "examples/cases.json", "examples/predictions.json",
             "examples/rejected-predictions.json",
             "examples/github-actions/evaluate-agent.yml",
+            "examples/consumer/cases.json", "examples/consumer/predictions.json",
+            "examples/consumer/rejected-predictions.json", "examples/consumer/run_demo.py",
             "tests/test_cli.py", "tests/test_evaluator.py", "tests/check_distribution.py",
             "docs/INTEGRATION.md", "docs/TRY_IT.md", "docs/ROADMAP.md",
+            "docs/CONSUMER_TRIAL.md",
         }
         missing = sorted(path for path in required if not (self.source / path).is_file())
         self.assertEqual(missing, [], f"sdist is incomplete: {missing}")
@@ -96,6 +99,16 @@ class DistributionTests(unittest.TestCase):
         result = self.run_command([sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"],
                                   self.source)
         self.assert_success(result)
+
+    def test_consumer_demo_runs_from_sdist(self):
+        output = self.workspace / "consumer results"
+        result = self.run_command(
+            [sys.executable, str(self.source / "examples/consumer/run_demo.py"),
+             "--evaluator", str(self.source / "evaluator.py"), "--output-dir", str(output)],
+            self.workspace)
+        self.assert_success(result)
+        summary = json.loads((output / "summary.json").read_text(encoding="utf-8"))
+        self.assertEqual([row["observed_exit"] for row in summary["observations"]], [0, 1, 2])
 
     def test_both_distributions_install_and_run_outside_source(self):
         for label, artifact in (("sdist", self.sdist), ("wheel", self.wheel)):

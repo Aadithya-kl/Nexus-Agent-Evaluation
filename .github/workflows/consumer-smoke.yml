@@ -1,0 +1,73 @@
+name: Pinned consumer demonstration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  consumer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.11"
+      - name: Verify exact CLI exit codes from a caller directory
+        run: python examples/consumer/run_demo.py --evaluator evaluator.py --output-dir cli-consumer-results
+      - name: Call the published Action by immutable revision
+        uses: Yusyer174/Nexus-Agent-Evaluation@1449a910af2ec0de208ce3c1c5469772e89db439
+        with:
+          cases: examples/consumer/cases.json
+          predictions: examples/consumer/predictions.json
+          report-path: accepted-consumer-report.json
+      - name: Observe a critical rejection at threshold zero
+        id: rejection
+        continue-on-error: true
+        uses: Yusyer174/Nexus-Agent-Evaluation@1449a910af2ec0de208ce3c1c5469772e89db439
+        with:
+          cases: examples/consumer/cases.json
+          predictions: examples/consumer/rejected-predictions.json
+          min-pass-rate: "0"
+          report-path: rejected-consumer-report.json
+      - name: Observe an invalid invocation
+        id: invalid
+        continue-on-error: true
+        uses: Yusyer174/Nexus-Agent-Evaluation@1449a910af2ec0de208ce3c1c5469772e89db439
+        with:
+          cases: missing-consumer-cases.json
+          predictions: examples/consumer/predictions.json
+          report-path: invalid-consumer-report.json
+      - name: Assert the observed Action outcomes and reports
+        shell: python
+        env:
+          REJECTION: ${{ steps.rejection.outcome }}
+          INVALID: ${{ steps.invalid.outcome }}
+        run: |
+          import json
+          import os
+          from pathlib import Path
+          assert os.environ["REJECTION"] == os.environ["INVALID"] == "failure"
+          accepted = json.loads(Path("accepted-consumer-report.json").read_text(encoding="utf-8"))
+          rejected = json.loads(Path("rejected-consumer-report.json").read_text(encoding="utf-8"))
+          assert accepted["accepted"] is True and accepted["passed"] == accepted["total"] == 2
+          assert rejected["accepted"] is False and rejected["gate_passed"] is False
+          assert rejected["critical_failures"] == ["ticket-review-01"]
+          assert rejected["minimum_pass_rate"] == 0
+          assert not Path("invalid-consumer-report.json").exists()
+      - name: Retain the observed synthetic results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-consumer-results
+          path: |
+            cli-consumer-results/
+            accepted-consumer-report.json
+            rejected-consumer-report.json
+          if-no-files-found: error

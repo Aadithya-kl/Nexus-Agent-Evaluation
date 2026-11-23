@@ -1,0 +1,16 @@
+[
+  {
+    "id": "ticket-answer-01",
+    "expected_decision": "answer",
+    "allowed_actions": ["draft_reply"],
+    "required_evidence": ["public-faq-v1"],
+    "critical": false
+  },
+  {
+    "id": "ticket-review-01",
+    "expected_decision": "escalate",
+    "allowed_actions": ["queue_human_review"],
+    "required_evidence": ["routing-policy-v1", "ticket-brief-001"],
+    "critical": true
+  }
+]

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add a reproducible caller demonstration with retained reports and exact expected exits, and verify the published Action at reviewed commit 1449a91. Include its runner/fixtures in source archives. This is synthetic software evidence, not an adoption claim.
+
 - Escape non-ASCII characters in CLI JSON reports so valid evaluations retain exit 0 or 1 on ASCII and CP1252 stdout. Parsed Unicode values and report fields are unchanged; regression coverage includes critical failures and unexpected prediction IDs at threshold zero.
 
 - Use SPDX MIT metadata and explicit license-file inclusion with setuptools 77.0.3+, without changing license terms or the Python 3.10 minimum.
