@@ -72,7 +72,7 @@ A [composite GitHub Action](action.yml) allows an existing project to evaluate i
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: actions/setup-python@v5
+- uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
   with:
     python-version: '3.11'
 - uses: Yusyer174/Nexus-Agent-Evaluation@754dcf51ff4fb5b15a648d4f633b55ee5fe0a3f7
@@ -83,6 +83,8 @@ A [composite GitHub Action](action.yml) allows an existing project to evaluate i
 ```
 
 Replace the example paths with your own files. The action reference above is a tested historical commit; review changes before pinning a newer commit. See the [full workflow example](examples/github-actions/evaluate-agent.yml) and the [local action smoke test](.github/workflows/action-smoke.yml).
+
+The setup-python action uses Node 24. Self-hosted runners running this example require Actions Runner 2.327.1 or newer; the repository CI uses GitHub-hosted runners.
 
 Alternatively, install a local checkout as a CLI package:
 
