@@ -20,7 +20,7 @@ jobs:
       # The caller repository must provide its own cases.json and predictions.json.
       # For example, have a previous step generate declared agent outputs.
       - name: Check reported agent decisions
-        uses: Yusyer174/Nexus-Agent-Evaluation@754dcf51ff4fb5b15a648d4f633b55ee5fe0a3f7
+        uses: Yusyer174/Nexus-Agent-Evaluation@1449a910af2ec0de208ce3c1c5469772e89db439
         with:
           cases: tests/agent/cases.json
           predictions: tests/agent/predictions.json
