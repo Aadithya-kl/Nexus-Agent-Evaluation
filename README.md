@@ -13,10 +13,10 @@ No model, API key, service or runtime dependencies are required. Python **3.10+*
 
 ## Browser lab
 
-The [NEXUS Evaluation Lab](docs/lab/README.md) provides five synthetic scenarios,
-editable JSON and report export. Open `docs/lab/index.html` from a local checkout
-to try it. The lab runs locally in your browser and uses the Python evaluator
-as its parity reference.
+Open the [NEXUS Evaluation Lab](https://yusyer174.github.io/Nexus-Agent-Evaluation/)
+to try five synthetic scenarios, edit the JSON and export a report. Evaluation
+runs in your browser. See the [lab documentation](docs/lab/README.md) for local
+build instructions and Python parity checks.
 
 ## See the result
 
