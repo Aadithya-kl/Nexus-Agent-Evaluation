@@ -6,16 +6,17 @@ NEXUS Agent Evaluation is a small educational Python evaluator for **structured 
 
 | Priority | Opportunity | How to verify it | Difficulty |
 | --- | --- | --- | --- |
-| High | [Reject duplicate JSON keys in *cases* input with explicit CLI regression coverage](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues/9) | CLI exits 2; original tests stay green | Beginner |
 | High | Independent [five-minute trial and feedback](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues/8) | Reproducible commands, observed outcomes and genuine criticism | No code required |
 | Medium | Regression coverage for report ordering and duplicate evidence IDs | Synthetic fixtures; preserve existing gate semantics | Beginner |
 | Medium | Clearer diagnostic messages for malformed nested predictions | Tests for each changed diagnostic; behavior unchanged | Intermediate |
+
+[Issue #9](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues/9) tracks a regression test for the existing CLI exit status of 2 when the case file contains duplicate JSON object keys. [PR #16](https://github.com/Yusyer174/Nexus-Agent-Evaluation/pull/16) contains the contributor’s test and its review and CI status.
 
 ## Next: integration quality
 
 The CLI already has three-platform CI. The [maintenance review](MAINTENANCE_REVIEW.md) records the Action coverage changes, release plan and scoped follow-up tasks; check existing workflows and issues before proposing overlapping work.
 
-- **Consumer example:** a tiny, separate repository or workflow showing use of the action with caller-controlled files and a reviewed immutable commit pin.
+- **Consumer trial.** The [pinned caller workflow](CONSUMER_TRIAL.md) demonstrates the action using synthetic files. Independent trials can help identify friction in other callers’ setups.
 - **Result schema:** define a versioned machine-readable report contract *only if there is a genuine downstream consumer need*. Avoid breaking existing JSON keys without explicit migration.
 - **Validation clarity:** document how strict case validation differs from failed prediction cases; introduce stricter input rejection only with tests and compatibility analysis.
 - **Developer documentation:** independently review the quickstart on Windows, Linux and macOS.

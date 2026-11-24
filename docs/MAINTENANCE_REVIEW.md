@@ -1,5 +1,7 @@
 # NEXUS maintenance review
 
+The initial audit and subsequent follow-ups record conditions at the time of each review. For current onboarding and contribution status, see the [README](../README.md) and [public roadmap](ROADMAP.md).
+
 Reviewed 2026-11-23 against [main at 62a5c10](https://github.com/Yusyer174/Nexus-Agent-Evaluation/commit/62a5c10f02ef75148baf8c0ae6000f9f40032656). The downloaded archive matched all 26 tracked files. The original 26 unit tests passed on Windows with Python 3.13.18. The highest-value work is protecting input files and making the composite action evaluate literal caller-supplied paths.
 
 Follow-up on 2026-11-23: [PR 12](https://github.com/Yusyer174/Nexus-Agent-Evaluation/pull/12) was reviewed and squash-merged as [8907a72](https://github.com/Yusyer174/Nexus-Agent-Evaluation/commit/8907a72a963163a82a49f7eb4b1ff47c8ce1390b), after all ten hosted jobs passed. The sections below retain the original audit evidence. The final section records the subsequent packaging work and refreshed collaboration research.
@@ -41,7 +43,7 @@ All three existing workflows request only `contents: read`; none use `pull_reque
 
 Main's [unit CI](https://github.com/Yusyer174/Nexus-Agent-Evaluation/actions/runs/45150433748), [Action CI](https://github.com/Yusyer174/Nexus-Agent-Evaluation/actions/runs/45150433772) and [CLI portability CI](https://github.com/Yusyer174/Nexus-Agent-Evaluation/actions/runs/45150433703) passed. These links describe the audited baseline; PR checks provide evidence for changed code.
 
-Open PRs [5](https://github.com/Yusyer174/Nexus-Agent-Evaluation/pull/5) and [6](https://github.com/Yusyer174/Nexus-Agent-Evaluation/pull/6) update setup-python and checkout in the unit workflow. This work leaves those updates to their existing reviews. Open issues [8](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues/8) and [9](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues/9) already cover independent feedback and a beginner test. No replacement issues are needed.
+At the time of the initial audit, [PR #5](https://github.com/Yusyer174/Nexus-Agent-Evaluation/pull/5) and [PR #6](https://github.com/Yusyer174/Nexus-Agent-Evaluation/pull/6) were open with setup-python and checkout updates for the unit workflow. Both have since merged. Open issues [8](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues/8) and [9](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues/9) already cover independent feedback and a beginner test. No replacement issues are needed.
 
 The quickstart already includes synthetic positive and negative cases, expected exits, a trial guide and an integration contract. The project has no runtime dependencies, but building/installing requires build tooling. A first-time user must install Python separately. Cross-platform interpreter names and checking exit status deserve a short clarification in the trial guide. No obsolete source files were identified.
 
@@ -96,14 +98,14 @@ For NEXUS, first use the existing trial issue and feedback form. Ask a willing d
 
 The [profile README](https://github.com/Yusyer174/Yusyer174) already states the author's student status, links both public projects and distinguishes declaration checks from runtime safety. It links the housing project's reproducible baseline and model card rather than claiming classification accuracy. The [housing README](https://github.com/Yusyer174/house-prices-prediction-portfolio) links its historical CI results; this maintenance review does not rerun or independently validate that model.
 
-The evaluator currently has no repository topics and a broad description, “Open-source evaluation framework for AI agents.” Recommended owner settings:
+At the time of the audit, the evaluator had no repository topics and a broad description, “Open-source evaluation framework for AI agents.” Recommended owner settings:
 
 - Description: “Dependency-free Python CLI and GitHub Action for deterministic checks of declared agent decisions, actions and evidence IDs.”
 - Topics: `python`, `ai-agents`, `evaluation`, `testing`, `github-actions`, `deterministic`.
 - Pin NEXUS Agent Evaluation first, then the housing baseline. Retain the profile's clear learning/research context.
 - Keep the existing trial and contributor links current after releases. Avoid adding adoption claims until independently supported.
 
-These are separate owner tasks; no profile repository, account setting, topics, visibility or pins were changed.
+The current [GitHub profile](https://github.com/Yusyer174) and [repository About section](https://github.com/Yusyer174/Nexus-Agent-Evaluation) show the published pins, description and topics.
 
 ## Packaging follow-up
 

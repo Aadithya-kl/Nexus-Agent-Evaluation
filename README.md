@@ -2,15 +2,14 @@
 
 [![Python tests](https://github.com/Yusyer174/Nexus-Agent-Evaluation/actions/workflows/tests.yml/badge.svg)](https://github.com/Yusyer174/Nexus-Agent-Evaluation/actions/workflows/tests.yml)
 [![GitHub Action smoke test](https://github.com/Yusyer174/Nexus-Agent-Evaluation/actions/workflows/action-smoke.yml/badge.svg)](https://github.com/Yusyer174/Nexus-Agent-Evaluation/actions/workflows/action-smoke.yml)
-[![MIT license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 **Test structured AI-agent decisions with deterministic, dependency-free Python.** NEXUS Agent Evaluation compares *reported* decisions, actions and evidence IDs against explicit test cases. It is useful as an offline regression check in development and CI.
 
 No model, API key, service or runtime dependencies are required. Python **3.10+**.
 
-**In one minute:** [Try a passing and deliberately failing case](docs/TRY_IT.md) · [Use the GitHub Action](#github-actions-integration) · [Give independent feedback](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues/8) · [Contribute](CONTRIBUTING.md)
+**Try it** · [Passing and deliberately failing cases](docs/TRY_IT.md) · [Use the GitHub Action](#github-actions-integration) · [Give independent feedback](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues/8) · [Contribute](CONTRIBUTING.md)
 
-> **Scope:** Early, standalone educational prototype. This does **not** execute agents, enforce permissions, authenticate evidence, or establish real-world safety. It is not a verified integration with the separate private NEXUS research project. No external adoption is claimed.
+> This early educational prototype checks declared outputs. Agent execution, permission enforcement, evidence authentication and real-world safety are outside its scope.
 
 ## See the result
 
@@ -110,7 +109,7 @@ Use independently designed development and held-out cases for meaningful evaluat
 The most valuable feedback is **independent and reproducible**, including negative results.
 
 - [Five-minute trial](docs/TRY_IT.md) · [Submit genuine feedback](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues/new?template=trial_feedback.yml)
-- [Open, beginner-friendly test issue](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues/9) · [Public roadmap](docs/ROADMAP.md)
+- [Public roadmap](docs/ROADMAP.md) · [Duplicate-key test issue](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues/9) and its [contributor PR](https://github.com/Yusyer174/Nexus-Agent-Evaluation/pull/16)
 - [Contributor guide](CONTRIBUTING.md) · [Bug reports and other issues](https://github.com/Yusyer174/Nexus-Agent-Evaluation/issues)
 
 Please use only synthetic or non-sensitive examples and never publish credentials or private agent data. Stars, forks and issue replies are not evidence of genuine usage without supporting details.
