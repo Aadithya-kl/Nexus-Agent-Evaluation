@@ -11,6 +11,13 @@ No model, API key, service or runtime dependencies are required. Python **3.10+*
 
 > This early educational prototype checks declared outputs. Agent execution, permission enforcement, evidence authentication and real-world safety are outside its scope.
 
+## Browser lab
+
+The [NEXUS Evaluation Lab](docs/lab/README.md) provides five synthetic scenarios,
+editable JSON and report export. Open `docs/lab/index.html` from a local checkout
+to try it. The lab runs locally in your browser and uses the Python evaluator
+as its parity reference.
+
 ## See the result
 
 Clone the repository and run the included synthetic cases:
