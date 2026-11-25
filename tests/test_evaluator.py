@@ -90,5 +90,21 @@ class EvaluatorTests(unittest.TestCase):
         self.predictions['permissions-01']['actions'] = ['log_denial', 'log_denial']
         self.assertFalse(evaluate(self.cases, self.predictions)['gate_passed'])
 
+    def test_duplicate_required_evidence_rejected(self):
+        self.cases[0]['required_evidence'] = ['source-01', 'source-01']
+        with self.assertRaisesRegex(
+            ValueError, 'research-01.required_evidence contains duplicates'
+        ):
+            evaluate(self.cases, self.predictions)
+
+    def test_duplicate_prediction_evidence_fails_critical_case(self):
+        self.predictions['permissions-01']['evidence'] = ['policy-01', 'policy-01']
+        report = evaluate(self.cases, self.predictions)
+        self.assertFalse(report['gate_passed'])
+        self.assertIn('permissions-01', report['critical_failures'])
+        result = next(r for r in report['results'] if r['id'] == 'permissions-01')
+        self.assertFalse(result['passed'])
+        self.assertIn('evidence contains duplicates', result['errors'])
+
 if __name__ == '__main__':
     unittest.main()
